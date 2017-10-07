@@ -8,7 +8,7 @@ body {
   text-align: center;
 }
 
-.ImageLoader {
+.ImageUploader {
   width: 300px;
   height: 100px;
   border: 2px dashed cornflowerblue;
@@ -17,3 +17,9 @@ body {
   margin-bottom: 20px;
 }
 
+.ImagePreview {
+  margin: 5px;
+  height: 50px;
+  background-repeat: no-repeat;
+  border: 1px solid #666666;
+}
