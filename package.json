@@ -1,0 +1,19 @@
+{
+  "name": "secbo",
+  "version": "0.1.0",
+  "description": "Security by obscurity. Hiding information such as logins and passwords within images.",
+  "private": true,
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.14"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "author": "Alaric von Teplitz",
+  "license": "MIT"
+}
