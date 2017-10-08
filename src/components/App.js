@@ -19,7 +19,6 @@ export default class App extends Component {
     this.setState({ 
       text: '',
       binary: '',
-      image: '',
     });
   }
 
@@ -48,6 +47,7 @@ export default class App extends Component {
     fr.onload = async (event) => {
         try {
           img.onload = async () => {
+            this.refesh();
             await self.setState({image: img});
             // For some reason using self.updateCanvas() as callback of setState
             // didn't work. So using async/await instead. Weird.
@@ -151,7 +151,6 @@ export default class App extends Component {
             href={this.state.dl} 
             download="secbo.png" 
             onClick={() => { this.writeAlpha(); }}
-            onMouseOut={() => { this.refesh(); }}
           >download
           </a>
         }
