@@ -9,7 +9,7 @@ body {
 }
 
 .ImageUploader {
-  width: 300px;
+  width: 370px;
   height: 100px;
   border: 2px dashed cornflowerblue;
   margin-left: auto;
@@ -22,4 +22,8 @@ body {
   height: 50px;
   background-repeat: no-repeat;
   border: 1px solid #666666;
+}
+
+canvas {
+  display: none;
 }
