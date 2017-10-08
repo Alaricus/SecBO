@@ -9,7 +9,10 @@ export default class App extends Component {
   };
 
   handleChange(e) {
-    this.setState({ text: e.target.value, binary: this.textToBinary(e.target.value) });
+    this.setState({ 
+      text: e.target.value, 
+      binary: this.textToBinary(e.target.value)
+    });
   }
 
   refesh() {
@@ -101,27 +104,23 @@ export default class App extends Component {
   writeAlpha() {
     const ctx = this.refs.canvas.getContext('2d');
     let imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-    if (this.state.binary.length > 0) {
+    if (imageData.data.length / 4 >= this.state.binary.length) {
       this.state.binary.split('').forEach((digit, index) => {
         // This sets everything to 255, so no need to handle zeroes
         imageData.data[(index * 4) + 3] = 255;
 
         if (digit === '1') {
-          // imageData.data[index * 4] = 0;
-          // imageData.data[(index * 4) + 1] = 0;
-          // imageData.data[(index * 4) + 2] = 0;
           imageData.data[(index * 4) + 3] = 254;
         }
         
         if (digit === ' ') {
-          // imageData.data[index * 4] = 0;
-          // imageData.data[(index * 4) + 1] = 0;
-          // imageData.data[(index * 4) + 2] = 255;
           imageData.data[(index * 4) + 3] = 253;
         }
       });
       ctx.putImageData(imageData, 0, 0);
       this.getDownload();
+    } else {
+      alert('The image was too small to contain all this data.')
     }
   }
 
@@ -138,7 +137,7 @@ export default class App extends Component {
           onDragEnter={(e) => {e.preventDefault();}}
           onDragOver={(e) => {e.preventDefault();}}
         >
-          <br />drag an image file here to import.
+          <br />drag an image file here
           <div className="ImagePreview" style={{backgroundImage: `url(${this.state.image.src})`}}></div>
         </div>
         <textarea rows="15" cols="50" value={ this.state.text } onChange={(e) => { this.handleChange(e); }}>
@@ -148,10 +147,12 @@ export default class App extends Component {
         <br />
         {
           this.state.text.length > 0 && this.state.image.src 
-          && <a 
+          && <a
             href={this.state.dl} 
-            download="test.png" 
-            onClick={() => { this.writeAlpha(); }}>download
+            download="secbo.png" 
+            onClick={() => { this.writeAlpha(); }}
+            onMouseOut={() => { this.refesh(); }}
+          >download
           </a>
         }
       </div>
