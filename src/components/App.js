@@ -129,6 +129,8 @@ export default class App extends Component {
   }
 
   render() {
+    const pixels = this.state.image.width * this.state.image.height;
+    const characters = Math.floor(pixels / 9);
     return (
       <div className="App">
         <h2>SecBO</h2>
@@ -140,7 +142,13 @@ export default class App extends Component {
           <br />drag an image file here
           <div className="ImagePreview" style={{backgroundImage: `url(${this.state.image.src})`}}></div>
         </div>
-        <textarea rows="15" cols="50" value={ this.state.text } onChange={(e) => { this.handleChange(e); }}>
+        <div className="Info">{
+          this.state.image && `${pixels} pixels available, ${characters} characters will fit`
+        }</div>
+        <textarea rows="15" cols="50" 
+          maxlength = { characters }
+          value={ this.state.text } 
+          onChange={(e) => { this.handleChange(e); }}>
         </textarea>
         <br />
         <canvas ref="canvas"></canvas>
