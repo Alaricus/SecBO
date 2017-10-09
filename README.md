@@ -25,7 +25,6 @@ If you'd like to contribute, just do a pull request. Follow the existing style a
 This project is licensed under the MIT License.
 
 ## TODO list:
-* 1. Need to avoid downloading if the data didn't fit.
-* 2. Need a warning for files with existing transparency.
-* 3. Need (maybe) to overwrite the existing file.
-* 4. Need to display the image better, possibly as a thumbnail.
+* 1. Need a warning for files with existing transparency.
+* 2. Need (maybe) an option to overwrite the existing file.
+* 3. Need to display the image better, possibly as a thumbnail.
