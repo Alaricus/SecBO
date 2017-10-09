@@ -4,7 +4,7 @@ import '../styles.css';
 export default class App extends Component {
   state = {
     text: '',
-    binary: '',
+    binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
     image: '',
   };
 
@@ -18,7 +18,7 @@ export default class App extends Component {
   refesh() {
     this.setState({ 
       text: '',
-      binary: '',
+      binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
     });
   }
 
@@ -130,7 +130,14 @@ export default class App extends Component {
 
   render() {
     const pixels = this.state.image.width * this.state.image.height;
-    const characters = Math.floor(pixels / 9);
+    const free = pixels - this.state.binary.length;
+    const freeColor = {};
+    if (free < 0) {
+      freeColor.color = 'red';
+    } else {
+      freeColor.color = 'black';
+    }
+
     return (
       <div className="App">
         <h2>SecBO</h2>
@@ -142,11 +149,13 @@ export default class App extends Component {
           <br />drag an image file here
           <div className="ImagePreview" style={{backgroundImage: `url(${this.state.image.src})`}}></div>
         </div>
-        <div className="Info">{
-          this.state.image && `${pixels} pixels available, ${characters} characters will fit`
-        }</div>
+        <div className="Info">
+          { this.state.image && `${pixels} total pixels, ` } 
+          <span style={freeColor}>
+            { this.state.image && `${free} still available` }
+          </span>
+        </div>
         <textarea rows="15" cols="50" 
-          maxlength = { characters }
           value={ this.state.text } 
           onChange={(e) => { this.handleChange(e); }}>
         </textarea>
@@ -154,7 +163,9 @@ export default class App extends Component {
         <canvas ref="canvas"></canvas>
         <br />
         {
-          this.state.text.length > 0 && this.state.image.src 
+          this.state.text.length > 0 
+          && this.state.image.src
+          && free >= 0
           && <a
             href={this.state.dl} 
             download="secbo.png" 
