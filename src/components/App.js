@@ -64,6 +64,7 @@ export default class App extends Component {
     const file = e.dataTransfer.files[0];
     if (file.type === "image/png") {
         fr.readAsDataURL(file);
+        this.setState({name: file.name});
     } else {
         alert('Invalid format. Use a PNG image.');
     }
@@ -146,8 +147,8 @@ export default class App extends Component {
           onDragEnter={(e) => {e.preventDefault();}}
           onDragOver={(e) => {e.preventDefault();}}
         >
-          <br />drag an image file here
-          <div className="ImagePreview" style={{backgroundImage: `url(${this.state.image.src})`}}></div>
+          <br />drag an image file here<br />
+          {this.state.image && <img className="ImagePreview" src={this.state.image.src} />}
         </div>
         <div className="Info">
           { this.state.image && `${pixels} total pixels, ` } 
@@ -168,7 +169,7 @@ export default class App extends Component {
           && free >= 0
           && <a
             href={this.state.dl} 
-            download="secbo.png" 
+            download={this.state.name} 
             onClick={() => { this.writeAlpha(); }}
           >download
           </a>

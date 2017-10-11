@@ -4,7 +4,7 @@ SecBO is Security by Obscurity, a way to hide bits of text in the alpha (transpa
 
 ## Getting Started
 
-Clone, build with `npm run build`, run, enjoy.
+[Try out](http://www.alaric.us/secbo), clone, build with `npm run build`, run, enjoy.
 
 ## Built With
 
@@ -27,4 +27,3 @@ This project is licensed under the MIT License.
 ## TODO list:
 * 1. Need a warning for files with existing transparency.
 * 2. Need (maybe) an option to overwrite the existing file.
-* 3. Need to display the image better, possibly as a thumbnail.
