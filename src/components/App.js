@@ -9,14 +9,14 @@ export default class App extends Component {
   };
 
   handleChange(e) {
-    this.setState({ 
-      text: e.target.value, 
+    this.setState({
+      text: e.target.value,
       binary: this.textToBinary(e.target.value)
     });
   }
 
   refesh() {
-    this.setState({ 
+    this.setState({
       text: '',
       binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
     });
@@ -83,10 +83,10 @@ export default class App extends Component {
     let bin = '';
     imageData.data.forEach((value, index) => {
       if (index > 0 && (index + 1) % 4 === 0 ) {
-        if (value === 253) { 
+        if (value === 253) {
           bin += ' ';
         }
-        if (value === 254) { 
+        if (value === 254) {
           bin += '1';
         }
         if (value === 255) {
@@ -94,7 +94,7 @@ export default class App extends Component {
         }
       }
     });
-    
+
     const text = this.binaryToText(bin);
     if (text.startsWith('[secbo]')
       && text.includes('[/secbo]')) {
@@ -113,7 +113,7 @@ export default class App extends Component {
         if (digit === '1') {
           imageData.data[(index * 4) + 3] = 254;
         }
-        
+
         if (digit === ' ') {
           imageData.data[(index * 4) + 3] = 253;
         }
@@ -151,25 +151,25 @@ export default class App extends Component {
           {this.state.image && <img className="ImagePreview" src={this.state.image.src} alt="thumbnail" />}
         </div>
         <div className="Info">
-          { this.state.image && `${pixels} total pixels, ` } 
+          { this.state.image && `${pixels} total pixels, ` }
           <span style={freeColor}>
             { this.state.image && `${free} still available` }
           </span>
         </div>
-        <textarea rows="15" cols="50" 
-          value={ this.state.text } 
+        <textarea rows="15" cols="50"
+          value={ this.state.text }
           onChange={(e) => { this.handleChange(e); }}>
         </textarea>
         <br />
         <canvas ref="canvas"></canvas>
         <br />
         {
-          this.state.text.length > 0 
+          this.state.text.length > 0
           && this.state.image.src
           && free >= 0
           && <a
-            href={this.state.dl} 
-            download={this.state.name} 
+            href={this.state.dl}
+            download={this.state.name}
             onClick={() => { this.writeAlpha(); }}
           >download
           </a>

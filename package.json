@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Security by obscurity. Hiding information such as logins and passwords within images.",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
