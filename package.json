@@ -4,9 +4,9 @@
   "description": "Security by obscurity. Hiding information such as logins and passwords within images.",
   "private": true,
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,5 +15,12 @@
     "eject": "react-scripts eject"
   },
   "author": "Alaric von Teplitz",
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie 11",
+    "not ie_mob 11",
+    "not op_mini all"
+  ]
 }

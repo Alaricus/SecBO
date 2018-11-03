@@ -148,7 +148,7 @@ export default class App extends Component {
           onDragOver={(e) => {e.preventDefault();}}
         >
           <br />drag an image file here<br />
-          {this.state.image && <img className="ImagePreview" src={this.state.image.src} />}
+          {this.state.image && <img className="ImagePreview" src={this.state.image.src} alt="thumbnail" />}
         </div>
         <div className="Info">
           { this.state.image && `${pixels} total pixels, ` } 
