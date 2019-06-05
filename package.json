@@ -5,9 +5,9 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "^2.1.1"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,10 +18,7 @@
   "author": "Alaric von Teplitz",
   "license": "MIT",
   "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "not ie 11",
-    "not ie_mob 11",
-    "not op_mini all"
+    "last 2 chrome versions",
+    "last 2 firefox versions"
   ]
 }
