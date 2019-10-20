@@ -8,33 +8,33 @@ body {
   text-align: center;
   border: 1px solid cornflowerblue;
   border-radius: 3px;
-  width: 450px;
-  margin-top: 50px;
+  width: 28.125rem;
+  margin-top: 3.125rem;
   margin-left: auto;
   margin-right: auto;
 }
 
 .ImageUploader {
-  width: 370px;
-  height: 100px;
+  width: 23.125rem;
+  height: 6.25rem;
   border: 2px dashed cornflowerblue;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .ImagePreview {
   vertical-align: -100%;
-  margin: 5px;
-  max-height: 50px;
-  max-width: 300px;
+  margin: 0.3125rem;
+  max-height: 3.125rem;
+  max-width: 18.75rem;
   box-shadow: 0 0 2px 1px cornflowerblue;
 
 }
 
 .Info {
-  font-size: 10px;
-  margin-bottom: 10px;
+  font-size: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 
 canvas {
@@ -45,7 +45,7 @@ a {
   border: 2px solid cornflowerblue;
   border-radius: 3px;
   background-color: rgb(167, 188, 224);
-  padding: 5px;
+  padding: 0.3125rem;
   color: #333333;
   text-decoration: none;
 }
