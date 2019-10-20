@@ -4,16 +4,7 @@ SecBO is Security by Obscurity, a way to hide bits of text in the alpha (transpa
 
 ## Getting Started
 
-[Try out](http://www.alaric.us/secbo), clone, build with `yarn build`, run, enjoy.
-
-## Built With
-
-* [React](https://github.com/facebook/react)
-* [Create React App](https://github.com/facebookincubator/create-react-app)
-
-## Contributing
-
-If you'd like to contribute, just do a pull request. Follow the existing style and add comments explaining what you did unless it's self evident.
+[Try out](https://alaricus.github.io/SecBO/), or clone, build, run, enjoy.
 
 ## Authors
 

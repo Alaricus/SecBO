@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Security by obscurity. Hiding text within the alpha channel of png images.",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://alaricus.github.io/SecBO",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.2.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
