@@ -12,9 +12,13 @@ body {
   margin-top: 3.125rem;
   margin-left: auto;
   margin-right: auto;
+  color: #333333
 }
 
 .ImageUploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 23.125rem;
   height: 6.25rem;
   border: 2px dashed cornflowerblue;
@@ -41,13 +45,15 @@ canvas {
   display: none;
 }
 
-a {
-  border: 2px solid cornflowerblue;
+a, button {
+  border: 1px solid cornflowerblue;
   border-radius: 3px;
-  background-color: rgb(167, 188, 224);
-  padding: 0.3125rem;
+  background-color: #e0ebff;
+  padding: 0.3125rem 1rem;
+  margin: 0 0.5rem 0.5rem;
   color: #333333;
   text-decoration: none;
+  font-size: 0.8rem;
 }
 
 textarea {

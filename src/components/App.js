@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import '../styles.css';
 
 export default class App extends Component {
-  state = {
-    text: '',
-    binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
-    image: '',
-  };
+  state = {};
+
+  componentDidMount() {
+    this.refesh();
+  }
+
+  refesh(image = '', name = '') {
+    this.setState({
+      text: '',
+      binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
+      image,
+      name,
+    });
+  }
 
   handleChange(e) {
     this.setState({
@@ -15,58 +24,39 @@ export default class App extends Component {
     });
   }
 
-  refesh() {
-    this.setState({
-      text: '',
-      binary: '1011011 1110011 1100101 1100011 1100010 1101111 1011101  1011011 101111 1110011 1100101 1100011 1100010 1101111 1011101',
-    });
-  }
-
   textToBinary(txt) {
-    let bin = '';
-    txt = `[secbo]${txt}[/secbo]`;
-    txt.split('').forEach((c) => {
-      bin += c.charCodeAt(0).toString(2) + ' ';
-    });
-    return bin;
+    return `[secbo]${txt}[/secbo]`.split('').map(c => c.charCodeAt(0).toString(2) + ' ').join('');
   }
 
   binaryToText(bin) {
-    let txt = '';
-    bin.split(' ').forEach((b) => {
-      txt += String.fromCharCode(parseInt(b, 2));
-    });
-    return txt;
+    return bin.split(' ').map(b => String.fromCharCode(parseInt(b, 2))).join('');
   }
 
   uploadImage(e) {
-    const self = this;
     e.preventDefault();
     const fr = new FileReader();
     const img = new Image();
-    fr.onload = async (event) => {
-        try {
-          img.onload = async () => {
-            this.refesh();
-            await self.setState({image: img});
-            // For some reason using self.updateCanvas() as callback of setState
-            // didn't work. So using async/await instead. Weird.
-            self.updateCanvas();
-            self.readAlpha();
-            self.getDownload();
-          }
-          img.src = event.target.result;
-        } catch (err) {
-          alert('File failed to load.')
-        }
-    }
+
     // Only accept png images and only use the first file if several are dragged.
     const file = e.dataTransfer.files[0];
     if (file.type === "image/png") {
         fr.readAsDataURL(file);
-        this.setState({name: file.name});
     } else {
         alert('Invalid format. Use a PNG image.');
+    }
+
+    fr.onload = event => {
+      try {
+        img.onload = () => {
+          this.refesh(img, file.name);
+          this.updateCanvas();
+          this.readAlpha();
+          this.getDownload();
+        }
+        img.src = event.target.result;
+      } catch (err) {
+        alert('File failed to load.');
+      }
     }
   }
 
@@ -80,24 +70,24 @@ export default class App extends Component {
   readAlpha() {
     const ctx = this.refs.canvas.getContext('2d');
     const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let bin = '';
-    imageData.data.forEach((value, index) => {
+    const bin = imageData.data.reduce((acc, value, index) => {
       if (index > 0 && (index + 1) % 4 === 0 ) {
         if (value === 253) {
-          bin += ' ';
+          return acc += ' ';
         }
         if (value === 254) {
-          bin += '1';
+          return acc += '1';
         }
         if (value === 255) {
-          bin += '0';
+          return acc += '0';
         }
       }
-    });
+      return acc;
+    }, '');
 
     const text = this.binaryToText(bin);
-    if (text.startsWith('[secbo]')
-      && text.includes('[/secbo]')) {
+
+    if (text.startsWith('[secbo]') && text.substring(0, text.length - 1).endsWith('[/secbo]')) {
       this.setState({text: text.substring(7, text.length - 9)});
     }
   }
@@ -106,10 +96,14 @@ export default class App extends Component {
     const ctx = this.refs.canvas.getContext('2d');
     let imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
     if (imageData.data.length / 4 >= this.state.binary.length) {
-      this.state.binary.split('').forEach((digit, index) => {
-        // This sets everything to 255, so no need to handle zeroes
-        imageData.data[(index * 4) + 3] = 255;
+      // This sets everything to 255, so no need to handle zeroes
+      imageData.data.forEach((datum, index) => {
+        if (index > 0 && (index + 1) % 4 === 0 ) {
+          imageData.data[index] = 255;
+        }
+      });
 
+      this.state.binary.split('').forEach((digit, index) => {
         if (digit === '1') {
           imageData.data[(index * 4) + 3] = 254;
         }
@@ -118,10 +112,11 @@ export default class App extends Component {
           imageData.data[(index * 4) + 3] = 253;
         }
       });
+
       ctx.putImageData(imageData, 0, 0);
       this.getDownload();
     } else {
-      alert('The image was too small to contain all this data.')
+      alert('The image was too small to contain all this data.');
     }
   }
 
@@ -130,6 +125,8 @@ export default class App extends Component {
   }
 
   render() {
+    if (!this.state.binary) return <p>loading...</p>;
+
     const pixels = this.state.image.width * this.state.image.height;
     const free = pixels - this.state.binary.length;
     const freeColor = {};
@@ -147,8 +144,17 @@ export default class App extends Component {
           onDragEnter={(e) => {e.preventDefault();}}
           onDragOver={(e) => {e.preventDefault();}}
         >
-          <br />drag an image file here<br />
-          {this.state.image && <img className="ImagePreview" src={this.state.image.src} alt="thumbnail" />}
+        {
+          this.state.image
+            ?
+              <img
+                className="ImagePreview"
+                src={this.state.image.src}
+                alt="thumbnail"
+              />
+            :
+              <span>drag an image file here</span>
+        }
         </div>
         <div className="Info">
           { this.state.image && `${pixels} total pixels, ` }
@@ -173,6 +179,10 @@ export default class App extends Component {
             onClick={() => { this.writeAlpha(); }}
           >download
           </a>
+        }
+        {
+          this.state.image.src
+          && <button onClick={() => {this.refesh(); }}>clear</button>
         }
       </div>
     );
