@@ -1,21 +1,20 @@
 {
   "files": {
-    "main.css": "/SecBO/static/css/main.440bbe51.chunk.css",
-    "main.js": "/SecBO/static/js/main.b1b032cd.chunk.js",
-    "main.js.map": "/SecBO/static/js/main.b1b032cd.chunk.js.map",
-    "runtime-main.js": "/SecBO/static/js/runtime-main.fccd7010.js",
-    "runtime-main.js.map": "/SecBO/static/js/runtime-main.fccd7010.js.map",
-    "static/js/2.6c191ca3.chunk.js": "/SecBO/static/js/2.6c191ca3.chunk.js",
-    "static/js/2.6c191ca3.chunk.js.map": "/SecBO/static/js/2.6c191ca3.chunk.js.map",
+    "main.css": "/SecBO/static/css/main.11b274be.chunk.css",
+    "main.js": "/SecBO/static/js/main.4d0f0180.chunk.js",
+    "main.js.map": "/SecBO/static/js/main.4d0f0180.chunk.js.map",
+    "runtime-main.js": "/SecBO/static/js/runtime-main.18a6ba24.js",
+    "runtime-main.js.map": "/SecBO/static/js/runtime-main.18a6ba24.js.map",
+    "static/js/2.8ed6b52f.chunk.js": "/SecBO/static/js/2.8ed6b52f.chunk.js",
+    "static/js/2.8ed6b52f.chunk.js.map": "/SecBO/static/js/2.8ed6b52f.chunk.js.map",
     "index.html": "/SecBO/index.html",
-    "precache-manifest.bdd959933e16e0b46fc39e113c3c5943.js": "/SecBO/precache-manifest.bdd959933e16e0b46fc39e113c3c5943.js",
-    "service-worker.js": "/SecBO/service-worker.js",
-    "static/css/main.440bbe51.chunk.css.map": "/SecBO/static/css/main.440bbe51.chunk.css.map"
+    "static/css/main.11b274be.chunk.css.map": "/SecBO/static/css/main.11b274be.chunk.css.map",
+    "static/js/2.8ed6b52f.chunk.js.LICENSE.txt": "/SecBO/static/js/2.8ed6b52f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.fccd7010.js",
-    "static/js/2.6c191ca3.chunk.js",
-    "static/css/main.440bbe51.chunk.css",
-    "static/js/main.b1b032cd.chunk.js"
+    "static/js/runtime-main.18a6ba24.js",
+    "static/js/2.8ed6b52f.chunk.js",
+    "static/css/main.11b274be.chunk.css",
+    "static/js/main.4d0f0180.chunk.js"
   ]
 }
