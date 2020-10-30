@@ -39,10 +39,11 @@ export default class App extends Component {
 
     // Only accept png images and only use the first file if several are dragged.
     const file = e.dataTransfer.files[0];
+    console.log(file.type, file);
     if (file.type === "image/png") {
         fr.readAsDataURL(file);
     } else {
-        alert('Invalid format. Use a PNG image.');
+        console.log('Invalid format. Use a PNG image.');
     }
 
     fr.onload = event => {
@@ -55,7 +56,7 @@ export default class App extends Component {
         }
         img.src = event.target.result;
       } catch (err) {
-        alert('File failed to load.');
+        console.log('File failed to load.');
       }
     }
   }
